@@ -6,4 +6,7 @@
 
 ## Useful Links
 
+- Animated thermometers: 
+    - https://codepen.io/cajpoj/pen/OJPpmWx?editors=1010 
+    - https://codepen.io/Arkellys/pen/rgpNBK 
 - [Markdown Syntax Reference](https://www.markdownguide.org/basic-syntax/)
