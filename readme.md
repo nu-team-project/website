@@ -37,7 +37,7 @@ Access my site at [Kew Gardens 3d model project](http://example.com/)
 The application is a website that will be displayed on a tablet, and the tablet will be mounted on a 3D-printed model of the Kew Gardens Botanical Gardens. The website will display a 3D model of Kew Gardens users will be able to navigate around the model and click on various sensors. The system will then display the data on a slider. The sensors used are Temperature, Humidity and CO2. Also included is an Admin page where the admin can add more sensors and rename the sensors. The admin will also be able to setup alerts for when the temperature, Humidity and CO2 become too high or too low. 
 
 ## Technologies
-I used `html`, `css`,`javaScript` and `jsx`
+We used `html`, `css`,`javaScript` and `jsx`
 
 ## Setup
 - run `npm install`
