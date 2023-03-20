@@ -69,7 +69,7 @@ export default function CanvasPage(params)
 
 
 
-   const gltf = useGLTF("./kewgardensV2.gltf");
+   const gltf = useGLTF("./kewgardensV3.gltf");
    return (
       <div className='modelCanvas'>
          <Canvas camera={{ position: [0, 20, 210], fov: 15 }}>
