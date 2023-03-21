@@ -1,5 +1,5 @@
 //CSS
-import './header.css';
+import '../CSS/header.css';
 
 /**
  * Header

@@ -13,7 +13,7 @@ export default function CarbonDioxide(props)
     return(
         <div>
             <img src={co2Cloud} alt="Cloud" />
-            <span className='img_text'>Co2: {props.data}%</span>
+            <span className='img_text'>Co2: {props.data.field3 / 10000}%</span>
         </div>
     );
 }

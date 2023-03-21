@@ -24,11 +24,11 @@ export default function Sphere(props)
     const sliderOpen = () =>
     {
         setColour(!colour);
-        props.openSlider(props.info);
+        props.openSlider(props.data, props.name);
     }
 
     return(
-        <mesh visible userData={{ Sensor: props.data }} position={props.coords} onClick={sliderOpen}>
+        <mesh visible userData={{ Sensor: props.name }} position={props.coords} onClick={sliderOpen}>
             <sphereGeometry args={[0.5, 16, 16]} />
             <meshStandardMaterial color={colour ? 'green' : 'red'} />
         </mesh>
