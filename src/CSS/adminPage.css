@@ -1,0 +1,24 @@
+body
+{
+  background-color: #c4c4c4;
+}
+
+main
+{
+  width: 90%;
+  margin: auto;
+  color: #1a1a1a;
+}
+
+.item
+{
+  width: 350px;
+  color: #252525;
+  background-color: #858585;
+  border: solid 2px #646464;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 40px;
+  box-shadow: 5px 5px 15px 4px #646464;
+}

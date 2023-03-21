@@ -24,7 +24,7 @@ export default function Sphere(props)
     const sliderOpen = () =>
     {
         setColour(!colour);
-        props.openSlider();
+        props.openSlider(props.info);
     }
 
     return(
