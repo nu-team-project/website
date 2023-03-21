@@ -1,14 +1,38 @@
 
-    #panel, #flip {
-        padding: 5px;
-        text-align: center;
-        background-color: #e5eecc;
-        border: solid 1px #c3c3c3;
-      }
+#panel, #flip
+{
+  padding: 5px;
+  text-align: center;
+  background-color: #e5eecc;
+  border: solid 1px #c3c3c3;
+}
 
-      
-#panel {
-    padding: 50px;
-    display: none;
-  }
-    
+#panel
+{
+  padding: 50px;
+  display: none;
+}
+
+
+.slide-pane__content
+{
+  padding: 10px;
+  background-color: #dadada;
+}
+.slide-pane__content div
+{
+  position: relative;
+  background-color: #dadada;
+}
+.slide-pane__content img
+{
+  width: 100%;
+}
+.slide-pane__content .img_text
+{
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  font-size: x-large;
+  font-weight: bolder;
+}

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
+//Packages
+import { Routes, Route } from 'react-router-dom';
 
-import Sphere from './Components/Sphere';
-import Slider from './Components/Slider';
+//Pages
+import CanvasPage from './Pages/canvasPage';
+import AdminPage from './Pages/adminPage';
 
 import './App.css';
 
@@ -11,44 +11,19 @@ import './App.css';
 /**
  * App
  * 
- * Contains the canvas for that inports the 3d model
- * and outputs to the canvas.
+ * Contains routes to either the admin or canvas page
  * 
  * @author Matthew Shaw
- * @returns Canvas and slider
+ * @returns Either the canvas page or the admin page
  */
 export default function App()
 {
-   const [paneState, paneSetState] = useState({
-      isPaneOpen: false,
-      isPaneOpenLeft: false
-    });
-
-
-
-   const openSlider = () =>
-   {
-      paneSetState({ isPaneOpen: true });
-   }
-
-
-
-   const gltf = useGLTF("./kewgardens.gltf")
    return (
       <>
-         <Canvas camera={{ position: [0, 20, 210], fov: 15 }}>
-            <OrbitControls />
-            <primitive object={gltf.scene} scale="0.5"/>
-
-            <Sphere data='Co2' coords={[0, 10, 0]} openSlider={openSlider} paneState={paneState} />
-
-            <Sphere data='Temperature' coords={[-15, 6, 0]} openSlider={openSlider} paneState={paneState} />
-
-            <Sphere data='Humidity' coords={[15, 6, 0]} openSlider={openSlider} paneState={paneState} />
-
-            <Environment preset={'city'} />
-         </Canvas>
-         <Slider paneState={paneState} paneSetState={paneSetState} />
+         <Routes>
+            <Route exact path='/' index element={<CanvasPage />} />
+            <Route exact path='/Admin' element={<AdminPage />} />
+         </Routes>
       </>
    );
 }

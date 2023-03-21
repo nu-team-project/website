@@ -1,7 +1,13 @@
-.App {
+.App
+{
   text-align: center;
 }
-#root
+body
+{
+  margin: 0;
+  background-color: #383838;
+}
+.modelCanvas
 {
   position: fixed;
   top: 0;
