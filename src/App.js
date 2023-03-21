@@ -7,7 +7,6 @@ import AdminPage from './Pages/adminPage';
 
 import './App.css';
 
-
 /**
  * App
  * 
@@ -17,7 +16,7 @@ import './App.css';
  * @returns Either the canvas page or the admin page
  */
 export default function App()
-{//test
+{
    return (
       <>
          <Routes>

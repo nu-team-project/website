@@ -1,7 +1,7 @@
 import React from "react";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 import SlidingPane from "react-sliding-pane";
-
+import Humidity from "./humidity";
 import CarbonDioxide from "./carbonDioxide";
 
 import "./Slider.css"
@@ -42,7 +42,7 @@ export default function Slider(props)
           {
             props.paneState.name === 'Humidity'
             &&
-            <p>Humidity: {props.paneState.data}%</p>
+            <Humidity data={props.paneState.data} />
           }
           
           
