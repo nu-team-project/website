@@ -50,6 +50,7 @@ We used `html`, `css`,`javaScript` and `jsx`
     react-sliding-pane: 7.3.0
     react-three-fiber: 6.0.13
     three: 0.149.0
+    React Google Charts: 4.0.0
     
 ## Status
 [Kew Gardens 3D model project for Kay Rogage] in progress.

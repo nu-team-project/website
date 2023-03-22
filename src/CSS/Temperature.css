@@ -1,0 +1,16 @@
+p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 0.5em;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+}
+
+.temperatureData {
+    display: flex;
+    flex-direction: column;
+}
+
+.chartsDiv {
+    margin-top: 1em;
+    background-color: aliceblue;
+}
