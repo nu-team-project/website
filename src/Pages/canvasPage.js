@@ -2,12 +2,16 @@
 import { useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
+import React from "react";
+import ReactDOM from "react-dom";
 
 //Components
 import Sphere from '../Components/Sphere';
 import Slider from '../Components/Slider';
+import About from '../Components/about';
 
 import '../App.css';
+
 
 
 /**
@@ -72,7 +76,7 @@ export default function CanvasPage(params)
    const gltf = useGLTF("./kewgardensV3.gltf");
    return (
       <div className='modelCanvas'>
-         <Canvas camera={{ position: [0, 20, 210], fov: 15 }}>
+         {/* <Canvas camera={{ position: [0, 20, 210], fov: 15 }}>
             <OrbitControls />
             <primitive object={gltf.scene} scale="0.5"/>
 
@@ -84,7 +88,11 @@ export default function CanvasPage(params)
 
             <Environment preset={'city'} />
          </Canvas>
-         <Slider paneState={paneState} paneSetState={paneSetState} />
+         <Slider paneState={paneState} paneSetState={paneSetState} /> */}
+         <About />
       </div>
    );
+
+   
+
 }
