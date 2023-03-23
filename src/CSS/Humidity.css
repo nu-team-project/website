@@ -1,0 +1,46 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.water-image{
+    width: 40%;
+}
+
+.current-level-text{
+    margin: auto;
+    padding: 2%;
+    font-size: 16px;
+}
+
+.text
+{
+  position: absolute;
+  top: 55%;
+  font-size: 30px;
+  font-weight: bolder;
+  color: white;
+}
+/*The water drop percentage is laid over the water drop image. The top and left may need to be change 
+depending where the graphic is set on the page*/
+#water-drop-percentage{
+    z-index: 9;
+    position: absolute;
+    top: 110px;
+    left: 60px;
+    font-size: 55px;
+    font-weight: 600;
+    color: white;
+}
+@media only screen and (min-width: 800px) {
+    .current-level-text{
+        font-size: 20px;
+    }
+}
+
+  @media only screen and (min-width: 1300px) {
+    .slide-pane__content div {
+        position: relative;
+        background-color: #dadada;
+      }
+  }
