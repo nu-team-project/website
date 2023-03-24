@@ -12,6 +12,7 @@ import Chart from "chart.js/auto";
 
 //Images 
 import waterDrop from '../images/water-drop.png';
+import { json } from 'react-router-dom';
 
 
 // I have wrote this in my component as an example. 
@@ -19,27 +20,27 @@ Chart.register(CategoryScale);
 
 export default function Humidity(props)
 {
-  const [channel, setChannel] = useState([]);
-  const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([0]);
 
   useEffect( () => {
-      fetch("https://api.thingspeak.com/channels/2048224/fields/1.json?api_key=WNBPHCR9UFKPAV6N&results=2")
+      fetch("https://api.thingspeak.com/channels/2048224/fields/2.json?api_key=WNBPHCR9UFKPAV6N&results=15")
       .then(
           (response) => response.json()
       )
       .then(
           (json) => {
-              setChannel(json.data)
-              setLoading(false)
-              console.log(json)
+              setData(json.feeds);
+              console.log(json);
           }
       )
       .catch(
           (e) => {
-              console.log(e.message)
+              console.log("error - " + e.message)
           }
       )
   },[]);
+
+
 
 //Extract the data from the dataset and use the date as the horizontal axis.
     const [chartData, setChartData] = useState({
@@ -63,11 +64,11 @@ export default function Humidity(props)
       <h3 className='current-level-text'>Current Humidity Level:</h3>
         <div className='wrapper'>
             <img className='water-image' src={waterDrop} alt="Water-Drop" />
-            <span className='text'>{props.data}%</span>
+            <span className='text'>{Math.round(data[0].field2)}%</span>
         </div>
             <p>The current humidity levels need to be maintained in the gardens because......</p>
         <hr/>
-
+        <p></p>
         <div>
             <h3 className='chart-header'>Humidity Data</h3>
             <LineChart className='humidity-chart' chartName="Humidity" chartData={chartData}/>

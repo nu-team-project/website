@@ -8,15 +8,14 @@ import { Line } from "react-chartjs-2";
  * @author Lindsey Cawthorne 
  * 
  */
-export default function LineChart({ chartData }, props) {
+export default function LineChart(props) {
 
 const chartName = props.chartName;
 
   return (
     <div className="chart-container">
-      <h2 style={{ textAlign: "center" }}>{chartName}</h2>
       <Line
-        data={chartData}
+        data={props.chartData}
         options={{
           plugins: {
             title: {
