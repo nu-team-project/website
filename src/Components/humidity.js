@@ -41,9 +41,7 @@ export default function Humidity(props)
       )
   },[]);
 
-  const currentHumidity = channel.map((value, key) =>  key={key}
 
-  );
 //Extract the data from the dataset and use the date as the horizontal axis.
     const [chartData, setChartData] = useState({
         labels: Data.map((data) => data.date), //Data is in the temp-graph-data file. 
