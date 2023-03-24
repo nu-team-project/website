@@ -3,6 +3,7 @@ import "react-sliding-pane/dist/react-sliding-pane.css";
 import SlidingPane from "react-sliding-pane";
 import Humidity from "./humidity";
 import CarbonDioxide from "./carbonDioxide";
+import Temperature from "./Temperature";
 
 import "./Slider.css"
 /**
@@ -37,7 +38,7 @@ export default function Slider(props)
           {
             props.paneState.name === 'Temperature'
             &&
-            <p>Temp: {props.paneState.data} degrees C</p>
+            <Temperature />
           }
           {
             props.paneState.name === 'Humidity'
