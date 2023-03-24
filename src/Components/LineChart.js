@@ -1,5 +1,13 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale,LinearScale, PointElement, LineElement } from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement
+);
 
 /**
  * The Line Graph
@@ -10,24 +18,38 @@ import { Line } from "react-chartjs-2";
  */
 export default function LineChart(props) {
 
-const chartName = props.chartName;
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        postion: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Humidity Graph'
+      }
+    }
+  };
+
+  const labels = props.data.map((value) => value.created_at);
+
+  const chartData = {
+    labels,
+    datasets: [
+      {
+        label: 'Humidity',
+        data: props.data.map((value) => value.field2),
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+      }
+    ]
+  }
+
+
 
   return (
     <div className="chart-container">
-      <Line
-        data={props.chartData}
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              text: "Data Over Time"
-            },
-            legend: {
-              display: false
-            }
-          }
-        }}
-      />
+      <Line options={options} data={chartData} />
     </div>
   );
 }

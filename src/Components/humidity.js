@@ -3,20 +3,14 @@ import '../CSS/Humidity.css';
 
 //Imports
 import { Data } from "../temp-graph-data/Data";
-import { CategoryScale } from "chart.js";
 import React, { useState, useEffect } from 'react';
 
 //Components
 import LineChart from "./LineChart";
-import Chart from "chart.js/auto";
 
 //Images 
 import waterDrop from '../images/water-drop.png';
-import { json } from 'react-router-dom';
 
-
-// I have wrote this in my component as an example. 
-Chart.register(CategoryScale);
 
 export default function Humidity(props)
 {
@@ -40,24 +34,6 @@ export default function Humidity(props)
       )
   },[]);
 
-
-
-//Extract the data from the dataset and use the date as the horizontal axis.
-    const [chartData, setChartData] = useState({
-        labels: Data.map((data) => data.date), //Data is in the temp-graph-data file. 
- 
- 
-//Extract the data from the dataset and use the date as the vertical axis.
-    datasets: [
-      {
-        label: "Humidity by percentage",
-        data: Data.map((data) => data.humidity),
-        backgroundColor: [""],
-        borderColor: "#0072A0",
-        borderWidth: 2
-      }
-    ]
-  });
  // On line 38 I am trying to return the name but its not working for some reason. 
  return(
   <div>
@@ -71,7 +47,7 @@ export default function Humidity(props)
         <p></p>
         <div>
             <h3 className='chart-header'>Humidity Data</h3>
-            <LineChart className='humidity-chart' chartName="Humidity" chartData={chartData}/>
+            <LineChart className='humidity-chart' data={data}/>
       </div>
   </div>
   );
