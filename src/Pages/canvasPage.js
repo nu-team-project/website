@@ -54,8 +54,6 @@ export default function CanvasPage(params)
       setData(tempData);
    }, [])
 
-
-
    const openSlider = (value) =>
    {
       paneSetState(
@@ -66,8 +64,6 @@ export default function CanvasPage(params)
          }
       );
    }
-
-
 
    const gltf = useGLTF("./kewgardensV3.gltf");
    return (

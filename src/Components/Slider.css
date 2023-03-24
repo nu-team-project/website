@@ -24,9 +24,12 @@
   position: relative;
   background-color: #dadada;
 }
+
+/*
 .slide-pane__content img
 {
   width: 100%;
+  object-fit: scale-down;
 }
 .slide-pane__content .img_text
 {
@@ -36,3 +39,4 @@
   font-size: x-large;
   font-weight: bolder;
 }
+*/
