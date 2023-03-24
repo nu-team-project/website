@@ -41,7 +41,6 @@ export default function Humidity(props)
       )
   },[]);
 
-
 //Extract the data from the dataset and use the date as the horizontal axis.
     const [chartData, setChartData] = useState({
         labels: Data.map((data) => data.date), //Data is in the temp-graph-data file. 
@@ -53,7 +52,7 @@ export default function Humidity(props)
         label: "Humidity by percentage",
         data: Data.map((data) => data.humidity),
         backgroundColor: [""],
-        borderColor: "red",
+        borderColor: "#0072A0",
         borderWidth: 2
       }
     ]
@@ -62,12 +61,17 @@ export default function Humidity(props)
  return(
   <div>
       <h3 className='current-level-text'>Current Humidity Level:</h3>
-      <div className='wrapper'>
-          <img className='water-image' src={waterDrop} alt="Water-Drop" />
-          <span className='text'>{props.data}%</span>
-      </div>
-      <LineChart className='humidity-chart' chartName="Humidity" chartData={chartData}/>
+        <div className='wrapper'>
+            <img className='water-image' src={waterDrop} alt="Water-Drop" />
+            <span className='text'>{props.data}%</span>
+        </div>
+            <p>The current humidity levels need to be maintained in the gardens because......</p>
+        <hr/>
 
+        <div>
+            <h3 className='chart-header'>Humidity Data</h3>
+            <LineChart className='humidity-chart' chartName="Humidity" chartData={chartData}/>
+      </div>
   </div>
   );
 }
