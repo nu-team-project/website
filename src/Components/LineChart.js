@@ -12,7 +12,9 @@ ChartJS.register(
 /**
  * The Line Graph
  * 
- * @see https://blog.logrocket.com/using-chart-js-react/. This highlights the code used from the author Chinwike Maduabuchi. 
+ * The line graph gets the data and displays it. In the silder with the humidity component. 
+ * 
+ * @see https://blog.logrocket.com/using-chart-js-react/. This highlights some of the code used from the author Chinwike Maduabuchi. 
  * @author Lindsey Cawthorne 
  * 
  */

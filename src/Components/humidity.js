@@ -2,7 +2,6 @@
 import '../CSS/Humidity.css';
 
 //Imports
-import { Data } from "../temp-graph-data/Data";
 import React, { useState, useEffect } from 'react';
 
 //Components
@@ -11,6 +10,16 @@ import LineChart from "./LineChart";
 //Images 
 import waterDrop from '../images/water-drop.png';
 
+/**
+ * The Humidity Component 
+ * 
+ * This component gets the humidity data from the API and deisplays it in the slider
+ * along with a graph and a graphic. 
+ * 
+ * @param {*} props 
+ * @returns 
+ * @author Lindsey Cawthorne
+ */
 
 export default function Humidity(props)
 {
@@ -34,7 +43,6 @@ export default function Humidity(props)
       )
   },[]);
 
- // On line 38 I am trying to return the name but its not working for some reason. 
  return(
   <div>
       <h3 className='current-level-text'>Current Humidity Level:</h3>
