@@ -1,51 +1,111 @@
-.wrapper{
-    display: flex;
-    justify-content: center;
+/*Grid container ----------------------------------*/
+.current-level-text{grid-area: current-level-text;}
+.water-drop { grid-area: graphic; }
+.text { grid-area: text; }
+.recent-highest { grid-area: recent-highest; }
+.recent-lowest { grid-area: recent-lowest; }
+.highest {grid-area: highest; }
+.lowest {grid-area: lowest; }
+.chart { grid-area: chart; }
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+      'current-level-text current-level-text'
+      'graphic text'
+      'recent-highest highest'
+      'recent-lowest lowest'
+      'chart chart';
+    gap: 10px;
+    padding: 10px;
+  }
+/*------------------------------------------------*/
+
+/*heading ----------------------------------------*/
+.current-level-text{
+    font-size: 16px;
+}
+/*------------------------------------------------*/
+
+/*Water graphic and text--------The water drop percentage is laid over the water drop image. 
+  The top and left may need to be change 
+  depending where the graphic is set on the page
+*/
+
+#water-drop-percentage{
+  z-index: 9;
+  position: absolute;
+  top: 110px;
+  left: 60px;
+  font-size: 55px;
+  font-weight: 600;
+  color: white;
 }
 
 .water-image{
-    width: 25%;
-    padding-bottom: 30px;
+  width: 85%;
 }
 
-.current-level-text{
-    margin: auto;
-    padding: 2%;
-    font-size: 16px;
-}
-
-.text
+.current-level
 {
   position: absolute;
-  top: 47%;
-  font-size: 30px;
+  top: 90px;
+  left: 45px;
+  font-size: 40px;
   font-weight: bolder;
   color: white;
 }
+
+.list-current{
+  padding: 0px;
+}
+
+ul li {
+  list-style-type: none;
+}
+/*-----------------------------------------------*/
+
+/* Dummy text -----------------------------------*/
+.text{
+  margin: auto;
+  padding-left: 10px;
+}
+/*-----------------------------------------------*/
 
 .chart-container {
     margin-bottom: 50px;
     width: 90%;
     display: flex;
     align-items: center;
-    padding: 10px;
+
   }
 
-/*The water drop percentage is laid over the water drop image. The top and left may need to be change 
-depending where the graphic is set on the page*/
-#water-drop-percentage{
-    z-index: 9;
-    position: absolute;
-    top: 110px;
-    left: 60px;
-    font-size: 55px;
-    font-weight: 600;
-    color: white;
+/*Highest percentage text ----------------------*/
+ul.highest{
+  margin: 4px;
+  padding: 4px;
+  padding-left: 14px;
 }
 
-.chart-header{
-   padding-left: 10px;
+.recent-highest{
+  font-weight: 600;
+  margin-left: 0;
 }
+/*----------------------------------------------*/
+
+/*Lowest percentage text -----------------------*/
+ul.lowest{
+  margin: 4px;
+  padding: 4px;
+  padding-left: 14px;
+}
+
+.recent-lowest{
+  font-weight: 600;
+  margin-left: 0;
+}
+/*----------------------------------------------*/
+
 @media only screen and (min-width: 800px) {
     .current-level-text{
         font-size: 20px;

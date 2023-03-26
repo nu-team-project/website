@@ -46,11 +46,13 @@ We used `html`, `css`,`javaScript` and `jsx`
 # Modules Installed
     react: 18.2.0
     react-dom: 18.2.0
+    react-router-dom: 6.9.0
     react-scripts: .0.1
     react-sliding-pane: 7.3.0
     react-three-fiber: 6.0.13
     three: 0.149.0
     React Google Charts: 4.0.0
+    react-chartjs-2: 5.2.0
     
 ## Status
 [Kew Gardens 3D model project for Kay Rogage] in progress.

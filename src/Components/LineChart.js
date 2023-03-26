@@ -24,7 +24,7 @@ export default function LineChart(props) {
     responsive: true,
     plugins: {
       legend: {
-        postion: 'top',
+        display: true,
       },
       title: {
         display: true,
@@ -40,14 +40,12 @@ export default function LineChart(props) {
     datasets: [
       {
         label: 'Humidity',
-        data: props.data.map((value) => value.field2),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+        data: props.data.map((value) => value.field2),// I tried to slice the data to make it looked better but the function kept causing issues. 
+        borderColor: '#1c7ea6 ',
+        backgroundColor: ''
       }
     ]
   }
-
-
 
   return (
     <div className="chart-container">
