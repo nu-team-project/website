@@ -23,7 +23,6 @@ export default function Slider(props)
         overlayClassName="slider-overlay"
         isOpen={props.paneState.isPaneOpen}
         title={props.paneState.name}
-        subtitle="Optional subtitle."
         width="40vw"
         onRequestClose={() => {
         props.paneSetState({ isPaneOpen: false });
@@ -32,7 +31,7 @@ export default function Slider(props)
           {
             props.paneState.name === 'Eco2'
             &&
-            <CarbonDioxide data={props.paneState.data} />
+            <CarbonDioxide data={props.paneState.data.field3} />
           }
           {
             props.paneState.name === 'Temperature'
@@ -44,10 +43,6 @@ export default function Slider(props)
             &&
             <p>Humidity: {Math.round(props.paneState.data.field2)}%</p>
           }
-          
-          
-          
-          
           <hr/>
       </SlidingPane>
     </div>

@@ -46,9 +46,9 @@ export default function CanvasPage(props)
             <OrbitControls />
             <primitive object={gltf.scene} scale="0.5"/>
 
-            <Sphere name={'Temperature'} coords={[-15, 6, 0]} data={props.temp} openSlider={openSlider} paneState={paneState} />
-            <Sphere name={'Humidity'} coords={[0, 10, 0]} data={props.humidity} openSlider={openSlider} paneState={paneState} />
-            <Sphere name={'Eco2'} coords={[15, 6, 0]} data={props.eco2} openSlider={openSlider} paneState={paneState} />
+            <Sphere name={'Temperature'} coords={[-15, 3.5, 0]} data={props.temp} openSlider={openSlider} paneState={paneState} />
+            <Sphere name={'Humidity'} coords={[0, 7, 0]} data={props.humidity} openSlider={openSlider} paneState={paneState} />
+            <Sphere name={'Eco2'} coords={[15, 3.5, 0]} data={props.eco2} openSlider={openSlider} paneState={paneState} />
 
             <Environment preset={'city'} />
          </Canvas>

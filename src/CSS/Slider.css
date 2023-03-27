@@ -27,14 +27,14 @@
 .slide-pane__content img
 {
   width: 100%;
-  height: 100px;
+  height: 200px;
   object-fit: scale-down;
 }
 .slide-pane__content .img_text
 {
   position: absolute;
   top: 50%;
-  left: 30%;
+  left: 40%;
   font-size: x-large;
   font-weight: bolder;
 }
