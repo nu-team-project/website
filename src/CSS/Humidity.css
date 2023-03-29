@@ -67,8 +67,13 @@ ul li {
 
 /* Dummy text -----------------------------------*/
 .text{
-  margin: auto;
-  padding-left: 10px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.margin
+{
+  margin-left: 0;
 }
 /*-----------------------------------------------*/
 
@@ -107,14 +112,23 @@ ul.lowest{
 /*----------------------------------------------*/
 
 @media only screen and (min-width: 800px) {
+
     .current-level-text{
         font-size: 20px;
     }
 }
 
   @media only screen and (min-width: 1300px) {
+
     .slide-pane__content div {
         position: relative;
         background-color: #dadada;
       }
+
+      
+.current-level
+{
+  top: 105px;
+  left: 53px;
+}
   }

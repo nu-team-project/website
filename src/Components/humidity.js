@@ -24,41 +24,27 @@ export default function Humidity()
 {
     const [data, setData] = useState([0]);
 // The fetch request gets the data from the API. 
-  useEffect( () => {
-         fetch("https://api.thingspeak.com/channels/2048224/fields/2.json?api_key=WNBPHCR9UFKPAV6N&results=15")
-      .then(
-          (response) => response.json()
-      )
-      .then(
-          (json) => {
-              setData(json.feeds);
-              console.log(json);
-          }
-      )
-      .catch(
-          (e) => {
-              console.log("error - " + e.message)
-          }
-      )
-  },[]);
+useEffect(() => {
+    fetch(
+      "https://api.thingspeak.com/channels/2048224/fields/2.json?api_key=WNBPHCR9UFKPAV6N&results=15"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data.feeds);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
 
-// HumidityData maps the data and slices it to get the first element.
+
+// humidity gets the data maps it to an array returns to as the max and min value of humidity
+  const humidity = data ? data.map((v, i) => v.field2) : [];
+
+
+// HumidityData maps the data and slices it to get the first element for the recent humidity.
     const humidityData = <ul className='list-current'>
-        { data.slice(0,1).map(
-            (value, key) => <li key={key}>{Math.round(value.field2)}%</li>
-        )}
-    </ul>
-
-// highestData maps the data and slices it to get the first element.
-    const highestData = <ul className='highest'>
-        { data.slice(0,1).map(
-            (value, key) => <li key={key}>{Math.round(value.field2)}%</li>
-        )}
-    </ul>
-
-// lowestData maps the data and slices it to get the first element.
-    const lowestData = <ul className='lowest'>
-        { data.slice(0,1).map(
+        {data.slice(0,1).map(
             (value, key) => <li key={key}>{Math.round(value.field2)}%</li>
         )}
     </ul>
@@ -73,23 +59,25 @@ export default function Humidity()
         </div>
 
         <div className='text'>
-            <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  The current humidity levels need to be maintained in the gardens because...... Lorem ipsum dolor
+            <p>The current humidity levels need to be maintained in the gardens because...... Lorem ipsum dolor
             sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-            quis nostrum exercitationem ullam corporis suscipit laboriosam, </p>
+            quis nostrum exercitationem ullam corporis suscipit laboriosam, quis nostrum </p>
         </div>
 
         <div className='recent-highest'>
-            <p>Highest this week: </p> 
+            <p className='margin'>Highest this week: </p> 
         </div>
-        {highestData}
         
+        <p>{Math.max(...humidity)}</p>
+
         <div className='recent-lowest'>
-            <p>Lowest this week:  </p> 
+            <p className='margin'>Lowest this week: </p> 
         </div>
-        {lowestData}
-    
+         <p>{Math.min(...humidity)}</p>
+
         <div className='chart'>
-            <h3>Humidity Data</h3>
+            <h3>Humidity Data:</h3>
+
             <LineChart className='humidity-chart' data={data}/>
         </div>
     </div>
