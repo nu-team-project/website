@@ -26,7 +26,7 @@ export default function Humidity()
 {
     const [data, setData] = useState([0]);
     
-// The fetch request gets the data from the API. The data state stores the data and uses it in the functions.  
+// The fetch request gets the data from the API. The data state stores the data and uses it in the functions. 
 useEffect(() => {
     fetch(
       "https://api.thingspeak.com/channels/2048224/fields/2.json?api_key=WNBPHCR9UFKPAV6N&results=15"
@@ -71,20 +71,24 @@ console.log(humidity);
             <p className='margin'>Highest this week: </p> 
         </div>
         
-        <p>{Math.max(...humidity)}</p>
-       {
-       //Returns the max value for the humidity sensor with Math.max. 
-       console.log(Math.max(...humidity))
-       }
+        <p>
+          {
+            //Returns the max value for the humidity sensor with Math.max.
+            Math.max(...humidity)
+          }
+        </p>
 
         <div className='recent-lowest'>
             <p className='margin'>Lowest this week: </p> 
         </div>
-         <p>{Math.min(...humidity)}</p>
-        {
-        //Returns the max value for the humidity sensor with Math.max. 
-        console.log(Math.min(...humidity))
-        }
+
+         <p>
+          {
+            //Returns the min value for the humidity sensor with Math.max. 
+            Math.min(...humidity)
+          }
+          </p>
+    
         <div className='chart'>
             <h3>Humidity Data:</h3>
 
