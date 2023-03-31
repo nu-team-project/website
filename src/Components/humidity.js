@@ -14,7 +14,9 @@ import waterDrop from '../images/water-drop.png';
  * The Humidity Component 
  * 
  * This component gets the humidity data from the API and displays it in the slider
- * along with a graph and a graphic. 
+ * along with a graph and a graphic. The tablet sizes that will display the sensor
+ * are 1200 x 800 and the tablet will be displayed length ways on the model this 
+ * has been concidered when building this sensor. 
  * 
  * @returns All of the data and displays it in the slider.
  * @author Lindsey Cawthorne
@@ -23,7 +25,8 @@ import waterDrop from '../images/water-drop.png';
 export default function Humidity()
 {
     const [data, setData] = useState([0]);
-// The fetch request gets the data from the API. 
+    
+// The fetch request gets the data from the API. The data state stores the data and uses it in the functions.  
 useEffect(() => {
     fetch(
       "https://api.thingspeak.com/channels/2048224/fields/2.json?api_key=WNBPHCR9UFKPAV6N&results=15"
@@ -38,9 +41,9 @@ useEffect(() => {
   }, []);
 
 
-// humidity gets the data maps it to an array returns to as the max and min value of humidity
+// humidity conditional ternary gets the data if it exists and maps it to an array. 
   const humidity = data ? data.map((v, i) => v.field2) : [];
-
+console.log(humidity);
 
 // HumidityData maps the data and slices it to get the first element for the recent humidity.
     const humidityData = <ul className='list-current'>
@@ -69,12 +72,19 @@ useEffect(() => {
         </div>
         
         <p>{Math.max(...humidity)}</p>
+       {
+       //Returns the max value for the humidity sensor with Math.max. 
+       console.log(Math.max(...humidity))
+       }
 
         <div className='recent-lowest'>
             <p className='margin'>Lowest this week: </p> 
         </div>
          <p>{Math.min(...humidity)}</p>
-
+        {
+        //Returns the max value for the humidity sensor with Math.max. 
+        console.log(Math.min(...humidity))
+        }
         <div className='chart'>
             <h3>Humidity Data:</h3>
 
