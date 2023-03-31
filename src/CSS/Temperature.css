@@ -3,14 +3,54 @@ p {
     margin-left: 0.5em;
     margin-bottom: 0.2em;
     margin-top: 0.2em;
+    width: auto;
+}
+
+#current {
+    grid-area: current;
+    
+}
+
+#highest {
+    grid-area: highest;
+}
+
+#lowest {
+    grid-area: lowest;
 }
 
 .temperatureData {
-    display: flex;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-areas: 
+        "image current"
+        "image highest"
+        "image lowest"
+        "chart chart";
     flex-direction: column;
+
+}
+
+svg {
+    background-color: #dadada;;
 }
 
 .chartsDiv {
     margin-top: 1em;
-    background-color: aliceblue;
+    background-color: #dadada;
+    grid-area: chart;
+}
+
+img {
+    width: 64px;
+    grid-area: image;
+    align-self: center;
+}
+
+#slider {
+    margin-top: 1em;
+}
+
+#sliderDiv {
+    width: 100%;
 }

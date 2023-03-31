@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { Chart } from "react-google-charts";
+import Slider from 'react-input-slider';
 import "../CSS/Temperature.css";
+import temperatureImage from "../images/thermometer.png"
 
 /**
  * Temperature Component
@@ -11,6 +13,9 @@ import "../CSS/Temperature.css";
  * 
  * Graphs and Chart visuals are provided by React Google Charts.
  * 
+ * @see Thermometer Image provided by:
+ * https://www.flaticon.com/free-icons/haw-weather - Haw weather icons created by Cap Cool - Flaticon
+ * 
  * @author Kristopher Olds
  * @returns JSX data displaying various temperature information in the form of Strings and charts/graphs
  */
@@ -19,8 +24,10 @@ export default function Temperature() {
     // Controls how many results we get back from the API call
     const resultsNumber = 100;
 
+    let [weekNumber, setWeekNumber] = useState(0);
     let [data, setData] = useState([0]);
     let [count, setCount] = useState(0);
+    let [firstLoad, setFirstLoad] = useState(true);
 
     let lineChartData = [[]];
     let lineChartOptions = {};
@@ -45,25 +52,64 @@ export default function Temperature() {
     }, []);
 
     setupLineChart();
-    { count > 0 && generateData() }
+    { count > 0 && firstLoad && generateData() }
+
+    let charts = () => {
+        return (
+            <Chart
+                chartType="LineChart"
+                width="100%"
+                height="300px"
+                data={lineChartData}
+                options={lineChartOptions}
+            />
+        )
+    }
+
+    useEffect(() => {
+        charts()
+    }, [weekNumber])
+
 
     return (
         <div className="temperatureData">
-            {data && <p>Current Temperature: <strong>{data[0].field1}°C</strong></p>}
-            {data && <p>The highest temperature this week: <strong>{highestTemp}°C</strong></p>}
-            {data && <p>The lowest temperature this week: <strong>{lowestTemp}°C</strong></p>}
+            {data && <img src={temperatureImage} alt="thermometer image" />}
+            {data && <p id="current">Current Temperature: <strong>{data[0].field1}°C</strong></p>}
+            {data && <p id="highest">The highest temperature this week: <strong>{highestTemp}°C</strong></p>}
+            {data && <p id="lowest">The lowest temperature this week: <strong>{lowestTemp}°C</strong></p>}
+
             <div className="chartsDiv">
                 <p>Temperature over the last 7 days</p>
-                <Chart
-                    chartType="LineChart"
-                    width="100%"
-                    height="400px"
-                    data={lineChartData}
-                    options={lineChartOptions}
-                />
+                {charts()}
+                {weekNumber === 0 && <p>Week: Current Week</p>}
+                {weekNumber > 0 && <p>Week Prior: {weekNumber}</p>}
+                <button type="button" onClick={handleWeekChange} id="prevWeek">Prev Week</button>
+                {weekNumber > 0 && <button type="button" onClick={handleWeekChange} id="currentWeek">Next Week</button>}
             </div>
+
         </div>
     )
+
+    function handleWeekChange(e) {
+        if (e.target.id === "prevWeek") {
+            if (weekNumber === 5) return; // Don't go back further than 5 weeks
+            setWeekNumber(weekNumber+1);
+
+            let startingKey = (7*weekNumber) + 7;
+            let count = 1;
+            
+            for(let i = (weekNumber*7) + 7; i < startingKey+7; i++) {
+                // lineChartData[count][1] = 1;
+                count++;
+                // console.log(lineChartData[1][1]);
+            }
+
+        } else if (e.target.id === "currentWeek") {
+            setWeekNumber(weekNumber-1);
+            
+        }
+
+    }
 
     function setupLineChart() {
         lineChartData = [
@@ -109,6 +155,8 @@ export default function Temperature() {
                 }
             }
         })
+
+        
     }
 
     // Converting the JSON data returned from 5 decimal places to 2
