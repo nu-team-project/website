@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Chart } from "react-google-charts";
-import Slider from 'react-input-slider';
 import "../CSS/Temperature.css";
 import temperatureImage from "../images/thermometer.png"
 
@@ -28,12 +27,22 @@ export default function Temperature() {
     let [data, setData] = useState([0]);
     let [count, setCount] = useState(0);
     let [firstLoad, setFirstLoad] = useState(true);
+    let [currentTemp, setCurrentTemp] = useState(0);
+    let [highestTemp, setHighestTemp] = useState(0);
+    let [lowestTemp, setLowestTemp] = useState(0);
+    let [lineChartData, setLineChartData] = useState ([
+        ["Day of Week", "Temperature"],
+        ["Monday", 0],
+        ["Tuesday", 0],
+        ["Wednesday", 0],
+        ["Thursday", 0],
+        ["Friday", 0],
+        ["Saturday", 0],
+        ["Sunday", 0]
+    ]);
 
-    let lineChartData = [[]];
+    // let lineChartData = [[]];
     let lineChartOptions = {};
-
-    let lowestTemp = 0;
-    let highestTemp = 0;
 
     useEffect(() => {
         fetch(`https://api.thingspeak.com/channels/2048224/fields/1.json?api_key=WNBPHCR9UFKPAV6N&results=${resultsNumber}`)
@@ -47,14 +56,20 @@ export default function Temperature() {
                 }
             )
             .catch((error) => {
-                console.error(error);
+                console.error("Error: " + error);
             })
     }, []);
 
     setupLineChart();
     { count > 0 && firstLoad && generateData() }
 
+
+    // console.log("Regen data");
+
     let charts = () => {
+        // console.log("Chart...")
+        // console.log(lineChartData);
+        // console.log(lineChartOptions);
         return (
             <Chart
                 chartType="LineChart"
@@ -68,21 +83,21 @@ export default function Temperature() {
 
     useEffect(() => {
         charts()
-    }, [weekNumber])
-
+    }, [lineChartData])
+      
 
     return (
         <div className="temperatureData">
             {data && <img src={temperatureImage} alt="thermometer image" />}
-            {data && <p id="current">Current Temperature: <strong>{data[0].field1}°C</strong></p>}
+            {data && <p id="current">Current Temperature: <strong>{currentTemp}°C</strong></p>}
             {data && <p id="highest">The highest temperature this week: <strong>{highestTemp}°C</strong></p>}
             {data && <p id="lowest">The lowest temperature this week: <strong>{lowestTemp}°C</strong></p>}
 
             <div className="chartsDiv">
-                <p>Temperature over the last 7 days</p>
+                {weekNumber === 0 && <p>Temperature over the last 7 days</p>}
+                {weekNumber > 0 && <p>{weekNumber} week(s) ago temperatures</p>}
                 {charts()}
-                {weekNumber === 0 && <p>Week: Current Week</p>}
-                {weekNumber > 0 && <p>Week Prior: {weekNumber}</p>}
+                {/* {weekNumber === 0 && <p>Week: Current Week</p>} */}
                 <button type="button" onClick={handleWeekChange} id="prevWeek">Prev Week</button>
                 {weekNumber > 0 && <button type="button" onClick={handleWeekChange} id="currentWeek">Next Week</button>}
             </div>
@@ -90,6 +105,7 @@ export default function Temperature() {
         </div>
     )
 
+    // Needs optimising. Duplicate code being used.
     function handleWeekChange(e) {
         if (e.target.id === "prevWeek") {
             if (weekNumber === 5) return; // Don't go back further than 5 weeks
@@ -97,34 +113,43 @@ export default function Temperature() {
 
             let startingKey = (7*weekNumber) + 7;
             let count = 1;
-            
-            for(let i = (weekNumber*7) + 7; i < startingKey+7; i++) {
-                // lineChartData[count][1] = 1;
+
+            for(let i = startingKey; i < startingKey+7; i++) {
+                let stringData = parseFloat(data[i].field1);
+                let intData = parseFloat(stringData);
+                lineChartData[count][1] = intData;
                 count++;
-                // console.log(lineChartData[1][1]);
             }
 
         } else if (e.target.id === "currentWeek") {
             setWeekNumber(weekNumber-1);
             
+            let startingKey = (7*weekNumber) - 7;
+            let count = 1;
+            
+            for(let i = startingKey; i < startingKey+7; i++) {
+                let stringData = parseFloat(data[i].field1);
+                let intData = parseFloat(stringData);
+                lineChartData[count][1] = intData;
+                count++;
+            }
         }
-
     }
 
     function setupLineChart() {
-        lineChartData = [
-            ["Day of Week", "Temperature"],
-            ["Monday", 0],
-            ["Tuesday", 0],
-            ["Wednesday", 0],
-            ["Thursday", 0],
-            ["Friday", 0],
-            ["Saturday", 0],
-            ["Sunday", 0]
-        ];
+        // lineChartData = [
+        //     ["Day of Week", "Temperature"],
+        //     ["Monday", 0],
+        //     ["Tuesday", 0],
+        //     ["Wednesday", 0],
+        //     ["Thursday", 0],
+        //     ["Friday", 0],
+        //     ["Saturday", 0],
+        //     ["Sunday", 0]
+        // ];
 
         lineChartOptions = {
-            title: "Previous 7 Days Temperature",
+            title: "Weekly Temperatures",
             curveType: "function",
             legend: { position: "bottom" },
             animation: {
@@ -137,26 +162,30 @@ export default function Temperature() {
 
     // Generating the data to display in the Slider
     function generateData() {
+        setFirstLoad(false);
         temperatureToFloat();
+
         data.forEach(function (value, key) {
             if (key === 0) {
-                lowestTemp = value.field1;
-                highestTemp = value.field1;
+                setCurrentTemp(value.field1); 
+                setLowestTemp(value.field1);
+                setHighestTemp(value.field1);
+                // lowestTemp = value.field1;
+                // highestTemp = value.field1;
             }
-
             if (key < 7) {
                 let stringData = parseFloat(value.field1).toFixed(2);
                 let intData = parseFloat(stringData);
                 lineChartData[key + 1][1] = intData;
 
                 if (key > 0) {
-                    if (value.field1 < lowestTemp) lowestTemp = value.field1;
-                    if (value.field1 > highestTemp) highestTemp = value.field1;
+                    if (value.field1 < lowestTemp) setLowestTemp(value.field1);
+                    if (value.field1 > highestTemp) setHighestTemp(value.field1);
+                    // if (value.field1 < lowestTemp) lowestTemp = value.field1;
+                    // if (value.field1 > highestTemp) highestTemp = value.field1;
                 }
             }
-        })
-
-        
+        })   
     }
 
     // Converting the JSON data returned from 5 decimal places to 2
