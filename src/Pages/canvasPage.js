@@ -58,6 +58,8 @@ export default function CanvasPage(params)
       setData(tempData);
    }, [])
 
+
+
    const openSlider = (value) =>
    {
       paneSetState(

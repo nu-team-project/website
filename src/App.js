@@ -7,8 +7,9 @@ import AdminPage from './Pages/adminPage';
 
 import './App.css';
 
+
 /**
- * App//test
+ * App
  * 
  * Contains routes to either the admin or canvas page
  * 
