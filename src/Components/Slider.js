@@ -1,9 +1,8 @@
 import React from "react";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 import SlidingPane from "react-sliding-pane";
-import Humidity from "./humidity";
+
 import CarbonDioxide from "./carbonDioxide";
-import Temperature from "./Temperature";
 
 import "./Slider.css"
 /**
@@ -24,7 +23,7 @@ export default function Slider(props)
         overlayClassName="slider-overlay"
         isOpen={props.paneState.isPaneOpen}
         title={props.paneState.name}
-        subtitle=""
+        subtitle="Optional subtitle."
         width="40vw"
         onRequestClose={() => {
         props.paneSetState({ isPaneOpen: false });
@@ -38,13 +37,16 @@ export default function Slider(props)
           {
             props.paneState.name === 'Temperature'
             &&
-            <Temperature />
+            <p>Temp: {props.paneState.data} degrees C</p>
           }
           {
             props.paneState.name === 'Humidity'
             &&
-            <Humidity data={props.paneState.data} />
+            <p>Humidity: {props.paneState.data}%</p>
           }
+          
+          
+          
           
           <hr/>
       </SlidingPane>
