@@ -45,7 +45,6 @@ export default function Slider(props)
             &&
             <Humidity data={props.paneState.data} />
           }
-          
           <hr/>
       </SlidingPane>
     </div>
