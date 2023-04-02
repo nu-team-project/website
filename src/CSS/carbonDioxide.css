@@ -1,0 +1,68 @@
+/*---------- Carbon dioxide slider component ----------*/
+.current_level_text
+{
+    grid-area: current_level;
+    font-size: 16px;
+}
+.co2_graphic
+{
+    grid-area: graphic;
+}
+.text
+{
+    grid-area: text;
+}
+.recent_highest
+{
+    grid-area: recent_highest;
+}
+.recent_lowest
+{
+    grid-area: recent_lowest;
+}
+.highest
+{
+    grid-area: highest;
+}
+.lowest
+{
+    grid-area: lowest;
+}
+.chart
+{
+    grid-area: chart;
+}
+.chart .graph
+{
+    width: 80%;
+    margin: auto;
+}
+
+.grid_container
+{
+    display: grid;
+    grid-template-areas: 
+        'current_level current_level'
+        'graphic text'
+        'recent_highest highest'
+        'recent_lowest lowest'
+        'chart chart';
+    gap: 10px;
+    padding: 10px;
+}
+
+
+/*---------- graphic ------------*/
+.image
+{
+    width: 85%;
+}
+.current_level
+{
+    position: absolute;
+    top: 90px;
+    left: 45px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #1b1b1b;
+}

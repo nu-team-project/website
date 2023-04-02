@@ -31,7 +31,7 @@ export default function Slider(props)
         }}
         >
           {
-            props.paneState.name === 'Co2'
+            props.paneState.name === 'Eco2'
             &&
             <CarbonDioxide data={props.paneState.data} />
           }
