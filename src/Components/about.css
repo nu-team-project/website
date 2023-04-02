@@ -1,3 +1,9 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 
 #panel
 {
@@ -28,10 +34,23 @@
     width: 30%;
 }
 
-.p{
-    
+
+button{ 
+    margin: 10%;
+    text-align: center;
+
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+
 }
 
-title{
-    
-}
