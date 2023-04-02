@@ -41,7 +41,6 @@ export default function Temperature() {
         ["Sunday", 0]
     ]);
 
-    // let lineChartData = [[]];
     let lineChartOptions = {};
 
     useEffect(() => {
@@ -63,13 +62,7 @@ export default function Temperature() {
     setupLineChart();
     { count > 0 && firstLoad && generateData() }
 
-
-    // console.log("Regen data");
-
     let charts = () => {
-        // console.log("Chart...")
-        // console.log(lineChartData);
-        // console.log(lineChartOptions);
         return (
             <Chart
                 chartType="LineChart"
@@ -97,7 +90,6 @@ export default function Temperature() {
                 {weekNumber === 0 && <p>Temperature over the last 7 days</p>}
                 {weekNumber > 0 && <p>{weekNumber} week(s) ago temperatures</p>}
                 {charts()}
-                {/* {weekNumber === 0 && <p>Week: Current Week</p>} */}
                 <button type="button" onClick={handleWeekChange} id="prevWeek">Prev Week</button>
                 {weekNumber > 0 && <button type="button" onClick={handleWeekChange} id="currentWeek">Next Week</button>}
             </div>
@@ -137,17 +129,6 @@ export default function Temperature() {
     }
 
     function setupLineChart() {
-        // lineChartData = [
-        //     ["Day of Week", "Temperature"],
-        //     ["Monday", 0],
-        //     ["Tuesday", 0],
-        //     ["Wednesday", 0],
-        //     ["Thursday", 0],
-        //     ["Friday", 0],
-        //     ["Saturday", 0],
-        //     ["Sunday", 0]
-        // ];
-
         lineChartOptions = {
             title: "Weekly Temperatures",
             curveType: "function",
@@ -170,8 +151,6 @@ export default function Temperature() {
                 setCurrentTemp(value.field1); 
                 setLowestTemp(value.field1);
                 setHighestTemp(value.field1);
-                // lowestTemp = value.field1;
-                // highestTemp = value.field1;
             }
             if (key < 7) {
                 let stringData = parseFloat(value.field1).toFixed(2);
@@ -181,8 +160,6 @@ export default function Temperature() {
                 if (key > 0) {
                     if (value.field1 < lowestTemp) setLowestTemp(value.field1);
                     if (value.field1 > highestTemp) setHighestTemp(value.field1);
-                    // if (value.field1 < lowestTemp) lowestTemp = value.field1;
-                    // if (value.field1 > highestTemp) highestTemp = value.field1;
                 }
             }
         })   
